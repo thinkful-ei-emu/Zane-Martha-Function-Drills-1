@@ -1,13 +1,21 @@
 'use strict';
 
-function createGreeting (name, age){
-  return `Hi, my name is ${name} and I am ${age} years old.`;
-}
-
 function getYearOfBirth(age){
-  const yob = 2019 - age;
-  return `I was born in ${yob}.`;
+  if(age < 0){
+    throw new Error('Age can not be negative');
+  } else{
+    return 2019 - age;
+  }
 }
 
-const greeting1 = createGreeting();
+function createGreeting (name, age){
+  try{
+    const yob = getYearOfBirth(age);
+    return `Hi, my name is ${name} and I am ${age} years old. I was born in ${yob}.`;
+  } catch (error){
+    console.log('Entered negative age');
+  }
+}
+
+const greeting1 = createGreeting('Martha', 29);
 console.log(greeting1);
